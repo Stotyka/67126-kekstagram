@@ -1,3 +1,6 @@
+// var a;
+// var b;
+
 function getMessage (a, b) {
 
   // Если первый аргумент, a, имеет тип boolean, то:
@@ -8,7 +11,7 @@ function getMessage (a, b) {
 
   if (typeof ( a ) == 'boolean') {
     if ( a ) {
-      return "Переданное GIF-изображение анимировано и содержит [b] кадров";
+      return "Переданное GIF-изображение анимировано и содержит " + [b] + " кадров";
     } else {
       return "Переданное GIF-изображение не анимировано";
     }
@@ -21,7 +24,7 @@ function getMessage (a, b) {
 
   if (typeof ( a ) == 'number') {
     if ( a ) {
-      return "Переданное SVG-изображение содержит [a] объектов и [b * 4] атрибутов";
+      return "Переданное SVG-изображение содержит " + [a] + " объектов и " + [b * 4] + " атрибутов";
     }
   }
 
@@ -44,16 +47,16 @@ function getMessage (a, b) {
         for (var i = 0; i < a.length; i++) {
           artifactsSquare += a[i] * b[i];
         }
-      return "Общая площадь артефактов сжатия: [artifactsSquare] пикселей";
+      return "Общая площадь артефактов сжатия: " + [artifactsSquare] + " пикселей";
       }
     } else {
       var amountOfRedPoints = 0;
       for (var i = 0; i < a.length; i++) {
         amountOfRedPoints += a[i];
       }
-      return "Количество красных точек во всех строчках изображения: [amountOfRedPoints]";
+      return "Количество красных точек во всех строчках изображения: " + [amountOfRedPoints];
     }
   }
 }
 
-getMessage (a, b); // нужно ли вызывать функцию тут или это делает другой скрипт?
+// getMessage (a, b); // нужно ли вызывать функцию тут или это делает другой скрипт?
