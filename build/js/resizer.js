@@ -119,6 +119,47 @@
           this._resizeConstraint.side - this._ctx.lineWidth / 2,
           this._resizeConstraint.side - this._ctx.lineWidth / 2);
 
+
+
+
+
+
+
+
+
+// #7 CANVAS
+
+      // заливаю весь квадрат черным
+      this._ctx.fillStyle = 'rgba(0, 0, 0, 0.8)'
+      this._ctx.rect((-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2 - 72,
+             (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2 - 72,
+             600, 600);
+
+      // вычитаю из него область кадрирования
+      this._ctx.rect(
+          (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2 - 2,
+          (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2 - 2,
+          this._resizeConstraint.side - this._ctx.lineWidth / 2 + 4,
+          this._resizeConstraint.side - this._ctx.lineWidth / 2 + 4);
+      this._ctx.fill('evenodd');
+
+
+      // размер изображения
+      this._ctx.font = '16px Arial'
+      this._ctx.fillStyle = "white";
+      this._ctx.fillText(
+        this._image.naturalWidth + ' × ' + this._image.naturalHeight,
+        -40, (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2 - 10);
+      // интересно, как центрировать строку вне зависимоссти от содержимого (1200×1200) и (50×50)?
+      // и почему при перетягивании фото затемнение пропадает и появляется с шагом в 1px?
+
+
+// ***
+
+
+
+
+
       // Восстановление состояния канваса, которое было до вызова ctx.save
       // и последующего изменения системы координат. Нужно для того, чтобы
       // следующий кадр рисовался с привычной системой координат, где точка
