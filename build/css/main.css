@@ -369,11 +369,11 @@ input[type=radio]:checked + .upload-filter-label {
 }
 
 .pictures-loading:after {
-  content: "Ð—Ð°Ð³Ñ€ÑƒÐ·ÐºÐ°...";
+  content: "Загрузка...";
 }
 
 .pictures-failure:after {
-  content: "ÐžÑˆÐ¸Ð±ÐºÐ° Ð·Ð°Ð³Ñ€ÑƒÐ·ÐºÐ¸";
+  content: "Ошибка загрузки";
 }
 
 .picture {
