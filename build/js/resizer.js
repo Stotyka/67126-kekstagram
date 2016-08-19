@@ -88,15 +88,15 @@
       // canvas'a поэтому важно вовремя поменять их, если нужно начать отрисовку
       // чего-либо с другой обводкой.
 
-      // Толщина линии.
-      this._ctx.lineWidth = 6;
+      // // Толщина линии.
+      // this._ctx.lineWidth = 6;
       // Цвет обводки.
       this._ctx.strokeStyle = '#ffe753';
-      // Размер штрихов. Первый элемент массива задает длину штриха, второй
-      // расстояние между соседними штрихами.
-      this._ctx.setLineDash([15, 10]);
-      // Смещение первого штриха от начала линии.
-      this._ctx.lineDashOffset = 7;
+      // // Размер штрихов. Первый элемент массива задает длину штриха, второй
+      // // расстояние между соседними штрихами.
+      // this._ctx.setLineDash([15, 10]);
+      // // Смещение первого штриха от начала линии.
+      // this._ctx.lineDashOffset = 7;
 
       // Сохранение состояния канваса.
       this._ctx.save();
@@ -111,13 +111,167 @@
       // Координаты задаются от центра холста.
       this._ctx.drawImage(this._image, displX, displY);
 
-      // Отрисовка прямоугольника, обозначающего область изображения после
-      // кадрирования. Координаты задаются от центра.
-      this._ctx.strokeRect(
-          (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2,
-          (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2,
-          this._resizeConstraint.side - this._ctx.lineWidth / 2,
-          this._resizeConstraint.side - this._ctx.lineWidth / 2);
+      // // Отрисовка прямоугольника, обозначающего область изображения после
+      // // кадрирования. Координаты задаются от центра.
+      // this._ctx.strokeRect(
+      //     (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2,
+      //     (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2,
+      //     this._resizeConstraint.side - this._ctx.lineWidth / 2,
+      //     this._resizeConstraint.side - this._ctx.lineWidth / 2);
+
+
+
+
+
+
+
+
+
+// #7 CANVAS
+
+      // заливаю весь квадрат черным
+      this._ctx.fillStyle = 'rgba(0, 0, 0, 0.8)'
+      this._ctx.rect((-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2 - 72,
+             (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2 - 72,
+             600, 600);
+
+      // вычитаю из него область кадрирования
+      this._ctx.rect(
+          (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2 - 2,
+          (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2 - 2,
+          this._resizeConstraint.side - this._ctx.lineWidth / 2 + 4,
+          this._resizeConstraint.side - this._ctx.lineWidth / 2 + 4);
+      this._ctx.fill('evenodd');
+
+
+      // размер изображения
+      this._ctx.font = '16px Arial'
+      this._ctx.fillStyle = "white";
+      this._ctx.fillText(
+        this._image.naturalWidth + ' × ' + this._image.naturalHeight,
+        -40, (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2 - 10);
+
+
+
+
+
+      // #8 Canvas. Дополнительное задание   
+
+
+      // перемещаю точку отсчета 
+
+      this._ctx.translate(-this._resizeConstraint.side / 2, -this._resizeConstraint.side / 2);
+
+      function drawCircleLine(ctx, step, size, cxStart, cyStart, cxEnd, cyEnd, color) {
+        var x;
+        var y;
+
+        if (cxStart === cxEnd) {
+          y = 0 + cyStart;
+          x = 0 + cxStart;
+          while (y < cyEnd) {
+            drawCircle(ctx, size, x, y, color);
+            y += 0 + step;
+          }
+        }
+
+        if (cyStart === cyEnd) {
+          y = 0 + cyStart;
+          x = 0 + cxStart;
+          while (x < cxEnd) {
+            drawCircle(ctx, size, x, y, color);
+            x += 0 + step;
+          }
+        }
+      }
+
+      function drawCircle(ctx, size, cx, cy, color) {
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(cx, cy, size, 0, Math.PI * 2, true);
+        ctx.fill();
+      }
+
+      drawCircleLine(this._ctx, 14, 3, 0, 0, 0, this._resizeConstraint.side, this._ctx.strokeStyle);
+      drawCircleLine(this._ctx, 14, 3, this._resizeConstraint.side, 0, this._resizeConstraint.side, this._resizeConstraint.side, this._ctx.strokeStyle);
+      drawCircleLine(this._ctx, 14, 3, 0, 0, this._resizeConstraint.side, 0, this._ctx.strokeStyle);
+      drawCircleLine(this._ctx, 14, 3, 0, this._resizeConstraint.side, this._resizeConstraint.side, this._resizeConstraint.side, this._ctx.strokeStyle);
+
+
+
+      this._ctx.restore();
+    },
+
+
+
+
+// //  #9 Canvas. Совсем дополнительное задание  
+
+
+//       // перемещаю точку отсчета 
+
+//       this._ctx.translate(-this._resizeConstraint.side / 2 - 4, -this._resizeConstraint.side / 2 - 4);
+
+
+
+//       function drawCircleLine(ctx, step, cxStart, cyStart, cxEnd, cyEnd, color) {
+//         var x;
+//         var y;
+ 
+//         if (cxStart === cxEnd) {
+//           y = 0 + cyStart;
+//           x = 0 + cxStart;
+//           while (y < cyEnd - 30) {
+//             drawZigX(ctx, x, y, color);
+//             y += 0 + step;
+//           }
+//         }
+ 
+//         if (cyStart === cyEnd) {
+//           y = 0 + cyStart;
+//           x = 0 + cxStart;
+//           while (x < cxEnd - 30 ) {
+//             drawZigY(ctx, x, y, color);
+//             x += 0 + step;
+//           }
+//         }
+//       }
+ 
+//       function drawZigX(ctx, wx, wy, color) {
+//         ctx.stokeStyle = color;
+//         ctx.beginPath();
+//         ctx.moveTo(wx, wy);
+//         ctx.lineTo(wx + 15, wy - 15);
+//         ctx.lineTo(wx, wy - 30);
+//         ctx.stroke();
+//       }
+ 
+//       function drawZigY(ctx, zx, zy, color) {
+//         ctx.stokeStyle = color;
+//         ctx.beginPath();
+//         ctx.moveTo(zx, zy);
+//         ctx.lineTo(zx + 15, zy + 15);
+//         ctx.lineTo(zx + 30, zy);
+//         ctx.stroke();
+//       }
+
+//       drawCircleLine(this._ctx, 26, 0, 30, 0, this._resizeConstraint.side + 30, this._ctx.strokeStyle);
+//       drawCircleLine(this._ctx, 26, this._resizeConstraint.side - 8, 30, this._resizeConstraint.side - 8, this._resizeConstraint.side + 30, this._ctx.strokeStyle);
+//       drawCircleLine(this._ctx, 26, 0, 0, this._resizeConstraint.side, 0, this._ctx.strokeStyle);
+//       drawCircleLine(this._ctx, 26, 0, this._resizeConstraint.side - 8, this._resizeConstraint.side, this._resizeConstraint.side - 8, this._ctx.strokeStyle);
+ 
+//       this._ctx.restore();
+//     },
+
+
+
+
+
+// ***
+
+
+
+
 
       // Восстановление состояния канваса, которое было до вызова ctx.save
       // и последующего изменения системы координат. Нужно для того, чтобы
