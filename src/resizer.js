@@ -130,7 +130,7 @@
 // #7 CANVAS
 
       // заливаю весь квадрат черным
-      this._ctx.fillStyle = 'rgba(0, 0, 0, 0.8)'
+      this._ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
       this._ctx.rect((-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2 - 72,
              (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2 - 72,
              600, 600);
@@ -145,8 +145,8 @@
 
 
       // размер изображения
-      this._ctx.font = '16px Arial'
-      this._ctx.fillStyle = "white";
+      this._ctx.font = '16px Arial';
+      this._ctx.fillStyle = 'white';
       this._ctx.fillText(
         this._image.naturalWidth + ' × ' + this._image.naturalHeight,
         -40, (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2 - 10);
@@ -157,10 +157,10 @@
 
 
 
-      // #8 Canvas. Дополнительное задание   
+      // #8 Canvas. Дополнительное задание
 
 
-      // перемещаю точку отсчета 
+      // перемещаю точку отсчета
 
       this._ctx.translate(-this._resizeConstraint.side / 2, -this._resizeConstraint.side / 2);
 
@@ -207,10 +207,10 @@
 
 
 
-// //  #9 Canvas. Совсем дополнительное задание  
+// //  #9 Canvas. Совсем дополнительное задание
 
 
-//       // перемещаю точку отсчета 
+//       // перемещаю точку отсчета
 
 //       this._ctx.translate(-this._resizeConstraint.side / 2 - 4, -this._resizeConstraint.side / 2 - 4);
 
@@ -219,7 +219,6 @@
 //       function drawCircleLine(ctx, step, cxStart, cyStart, cxEnd, cyEnd, color) {
 //         var x;
 //         var y;
- 
 //         if (cxStart === cxEnd) {
 //           y = 0 + cyStart;
 //           x = 0 + cxStart;
@@ -228,7 +227,6 @@
 //             y += 0 + step;
 //           }
 //         }
- 
 //         if (cyStart === cyEnd) {
 //           y = 0 + cyStart;
 //           x = 0 + cxStart;
@@ -238,7 +236,6 @@
 //           }
 //         }
 //       }
- 
 //       function drawZigX(ctx, wx, wy, color) {
 //         ctx.stokeStyle = color;
 //         ctx.beginPath();
@@ -247,7 +244,6 @@
 //         ctx.lineTo(wx, wy - 30);
 //         ctx.stroke();
 //       }
- 
 //       function drawZigY(ctx, zx, zy, color) {
 //         ctx.stokeStyle = color;
 //         ctx.beginPath();
@@ -256,12 +252,10 @@
 //         ctx.lineTo(zx + 30, zy);
 //         ctx.stroke();
 //       }
-
 //       drawCircleLine(this._ctx, 26, 0, 30, 0, this._resizeConstraint.side + 30, this._ctx.strokeStyle);
 //       drawCircleLine(this._ctx, 26, this._resizeConstraint.side - 8, 30, this._resizeConstraint.side - 8, this._resizeConstraint.side + 30, this._ctx.strokeStyle);
 //       drawCircleLine(this._ctx, 26, 0, 0, this._resizeConstraint.side, 0, this._ctx.strokeStyle);
 //       drawCircleLine(this._ctx, 26, 0, this._resizeConstraint.side - 8, this._resizeConstraint.side, this._resizeConstraint.side - 8, this._ctx.strokeStyle);
- 
 //       this._ctx.restore();
 //     },
 
