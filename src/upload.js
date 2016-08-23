@@ -85,9 +85,9 @@
       fwd.classList.add('disabled');
       return false;
     } else {
-        fwd.classList.remove('disabled');
-        return true;
-      }
+      fwd.classList.remove('disabled');
+      return true;
+    }
   }
 
   /**
