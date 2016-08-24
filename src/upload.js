@@ -75,11 +75,12 @@
   //   return true;
   // }
 
+  var x = document.querySelector('#resize-x');
+  var y = document.querySelector('#resize-y');
+  var size = document.querySelector('#resize-size');
+  var fwd = document.querySelector('#resize-fwd');
+
   function resizeFormIsValid() {
-    var x = document.querySelector('#resize-x');
-    var y = document.querySelector('#resize-y');
-    var size = document.querySelector('#resize-size');
-    var fwd = document.querySelector('#resize-fwd');
 
     if (x.value < 0 || y.value < 0 || x.value + size.value >= currentResizer._image.naturalWidth || y.value + size.value >= currentResizer._image.naturalHeight) {
       fwd.classList.add('disabled');
@@ -89,6 +90,18 @@
       return true;
     }
   }
+
+  x.onchange = function() {
+    resizeFormIsValid();
+  };
+
+  y.onchange = function() {
+    resizeFormIsValid();
+  };
+
+  size.onchange = function() {
+    resizeFormIsValid();
+  };
 
   /**
    * Форма загрузки изображения.
