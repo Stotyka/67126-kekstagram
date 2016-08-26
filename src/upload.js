@@ -82,7 +82,7 @@
 
   function resizeFormIsValid() {
 
-    if (x.value < 0 || y.value < 0 || x.value + size.value >= currentResizer._image.naturalWidth || y.value + size.value >= currentResizer._image.naturalHeight) {
+    if (x.value < 0 || y.value < 0 || x.value + size.value >= imageSizelWidth || y.value + size.value >= imageSizeHeight) {
       fwd.classList.add('disabled');
       return false;
     } else {
@@ -181,6 +181,10 @@
           cleanupResizer();
 
           currentResizer = new Resizer(fileReader.result);
+          
+          var imageSizeWidth = currentResizer._image.naturalWidth;
+          var imageSizeHeight = currentResizer._image.naturalHeight;
+          
           currentResizer.setElement(resizeForm);
           uploadMessage.classList.add('invisible');
 
