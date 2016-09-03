@@ -71,9 +71,40 @@
    * Проверяет, валидны ли данные, в форме кадрирования.
    * @return {boolean}
    */
+  var x = document.querySelector('#resize-x');
+  var y = document.querySelector('#resize-y');
+  var size = document.querySelector('#resize-size');
+  var fwd = document.querySelector('#resize-fwd');
+
   function resizeFormIsValid() {
-    return true;
+    var imageSizeWidth = currentResizer._image.naturalWidth;
+    var imageSizeHeight = currentResizer._image.naturalHeight;
+    var newX = Number(x.value);
+    var newY = Number(y.value);
+    var newSize = Number(size.value);
+
+    return !(newX < 0 ||
+        newY < 0 ||
+        newX + newSize >= imageSizeWidth ||
+        newY + newSize >= imageSizeHeight ||
+        isNaN(newY) ||
+        isNaN(newSize) ||
+        isNaN(newX));
   }
+
+  function changeDisable() {
+    if (resizeFormIsValid()) {
+      fwd.classList.remove('disabled');
+    } else {
+      fwd.classList.add('disabled');
+    }
+  }
+
+  x.onchange = changeDisable;
+
+  y.onchange = changeDisable;
+
+  size.onchange = changeDisable;
 
   /**
    * Форма загрузки изображения.
