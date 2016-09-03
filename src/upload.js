@@ -75,15 +75,21 @@
   var y = document.querySelector('#resize-y');
   var size = document.querySelector('#resize-size');
   var fwd = document.querySelector('#resize-fwd');
-  var imageSizeWidth = currentResizer._image.naturalWidth;
-  var imageSizeHeight = currentResizer._image.naturalHeight;
 
   function resizeFormIsValid() {
-    if (x.value < 0 || y.value < 0 || x.value + size.value >= imageSizeWidth || y.value + size.value >= imageSizeHeight) {
-      return false;
-    } else {
-      return true;
-    }
+    var imageSizeWidth = currentResizer._image.naturalWidth;
+    var imageSizeHeight = currentResizer._image.naturalHeight;
+    var newX = Number(x.value);
+    var newY = Number(y.value);
+    var newSize = Number(size.value);
+
+    return !(newX < 0 ||
+        newY < 0 ||
+        newX + newSize >= imageSizeWidth ||
+        newY + newSize >= imageSizeHeight ||
+        isNaN(newY) ||
+        isNaN(newSize) ||
+        isNaN(newX));
   }
 
   function changeDisable() {
@@ -94,11 +100,11 @@
     }
   }
 
-  x.onchange = changeDisable();
+  x.onchange = changeDisable;
 
-  y.onchange = changeDisable();
+  y.onchange = changeDisable;
 
-  size.onchange = changeDisable();
+  size.onchange = changeDisable;
 
   /**
    * Форма загрузки изображения.
