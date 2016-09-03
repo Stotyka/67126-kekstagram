@@ -71,37 +71,34 @@
    * Проверяет, валидны ли данные, в форме кадрирования.
    * @return {boolean}
    */
-  // function resizeFormIsValid() {
-  //   return true;
-  // }
-
   var x = document.querySelector('#resize-x');
   var y = document.querySelector('#resize-y');
   var size = document.querySelector('#resize-size');
   var fwd = document.querySelector('#resize-fwd');
+  var imageSizeWidth = currentResizer._image.naturalWidth;
+  var imageSizeHeight = currentResizer._image.naturalHeight;
 
   function resizeFormIsValid() {
-
-    if (x.value < 0 || y.value < 0 || x.value + size.value >= imageSizelWidth || y.value + size.value >= imageSizeHeight) {
-      fwd.classList.add('disabled');
+    if (x.value < 0 || y.value < 0 || x.value + size.value >= imageSizeWidth || y.value + size.value >= imageSizeHeight) {
       return false;
     } else {
-      fwd.classList.remove('disabled');
       return true;
     }
   }
 
-  x.onchange = function() {
-    resizeFormIsValid();
-  };
+  function changeDisable() {
+    if (resizeFormIsValid()) {
+      fwd.classList.remove('disabled');
+    } else {
+      fwd.classList.add('disabled');
+    }
+  }
 
-  y.onchange = function() {
-    resizeFormIsValid();
-  };
+  x.onchange = changeDisable();
 
-  size.onchange = function() {
-    resizeFormIsValid();
-  };
+  y.onchange = changeDisable();
+
+  size.onchange = changeDisable();
 
   /**
    * Форма загрузки изображения.
@@ -181,10 +178,6 @@
           cleanupResizer();
 
           currentResizer = new Resizer(fileReader.result);
-          
-          var imageSizeWidth = currentResizer._image.naturalWidth;
-          var imageSizeHeight = currentResizer._image.naturalHeight;
-          
           currentResizer.setElement(resizeForm);
           uploadMessage.classList.add('invisible');
 
