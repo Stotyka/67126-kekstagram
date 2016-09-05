@@ -249,8 +249,22 @@
    * записав сохраненный фильтр в cookie.
    * @param {Event} evt
    */
+  var browserCookies = require('browser-cookies');
+
   filterForm.onsubmit = function(evt) {
     evt.preventDefault();
+
+    var ONE_DAY = (1000 * 60 * 60 * 24);
+    var now = new Date();
+    var grace = new Date(now.getFullYear(), 11, 9);
+    var currentYear = now.getFullYear();
+
+    if (now - grace > 0) {
+      grace.setFullYear(currentYear);
+    }else{
+      grace.setFullYear(currentYear - 1);
+    }
+    browserCookies.set('upload-filter', 'selectedFilter', {expires: (now - grace) * ONE_DAY});
 
     cleanupResizer();
     updateBackground();
