@@ -230,6 +230,9 @@
 
       resizeForm.classList.add('invisible');
       filterForm.classList.remove('invisible');
+      
+      var filterFromCookie = browserCookies.get('upload-filter');
+      document.getElementById('upload-filter-' + filterFromCookie).checked = true;
     }
   };
 
@@ -254,6 +257,16 @@
   filterForm.onsubmit = function(evt) {
     evt.preventDefault();
 
+    var checkedFilter;
+
+    if (document.getElementById('upload-filter-none').checked) {
+      checkedFilter = document.getElementById('upload-filter-none').value;
+    }else if (document.getElementById('upload-filter-chrome').checked) {
+      checkedFilter = document.getElementById('upload-filter-chrome').value;
+    }else {
+      checkedFilter = document.getElementById('upload-filter-sepia').value;
+    }
+
     var ONE_DAY = (1000 * 60 * 60 * 24);
     var now = new Date();
     var grace = new Date(now.getFullYear(), 11, 9);
@@ -264,7 +277,7 @@
     }else{
       grace.setFullYear(currentYear - 1);
     }
-    browserCookies.set('upload-filter', 'selectedFilter', {expires: (now - grace) * ONE_DAY});
+    browserCookies.set('upload-filter', checkedFilter, {expires: (now - grace) * ONE_DAY});
 
     cleanupResizer();
     updateBackground();
