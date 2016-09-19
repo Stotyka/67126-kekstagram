@@ -230,9 +230,9 @@
 
       resizeForm.classList.add('invisible');
       filterForm.classList.remove('invisible');
-      
+
       var filterFromCookie = browserCookies.get('upload-filter');
-      document.getElementById('upload-filter-' + filterFromCookie).checked = true;
+      document.getElementById('upload-filter-' + filterFromCookie).click();
     }
   };
 
@@ -257,15 +257,7 @@
   filterForm.onsubmit = function(evt) {
     evt.preventDefault();
 
-    var checkedFilter;
-
-    if (document.getElementById('upload-filter-none').checked) {
-      checkedFilter = document.getElementById('upload-filter-none').value;
-    }else if (document.getElementById('upload-filter-chrome').checked) {
-      checkedFilter = document.getElementById('upload-filter-chrome').value;
-    }else {
-      checkedFilter = document.getElementById('upload-filter-sepia').value;
-    }
+    var checkedFilter = document.querySelector('input[name=upload-filter]:checked').value;
 
     var ONE_DAY = (1000 * 60 * 60 * 24);
     var now = new Date();
@@ -274,7 +266,7 @@
 
     if (now - grace > 0) {
       grace.setFullYear(currentYear);
-    }else{
+    } else {
       grace.setFullYear(currentYear - 1);
     }
     browserCookies.set('upload-filter', checkedFilter, {expires: (now - grace) * ONE_DAY});
